@@ -18,25 +18,48 @@ class Users
     protected $name;
     protected $lastname;
     protected $email;
-    protected $birth;
     protected $address;
     protected $phoneNumber;
     protected $paymeantMethod;
     protected $userVip;
 
-    public function __construct($name,$lastname,$email,$birth,$address,$phoneNumber,$paymeantMethod,$userVip) {
+    public function __construct($name,$lastname,$email,$address,$phoneNumber,$paymeantMethod,$userVip) {
         $this->name = $name;
         $this->lastname = $lastname;
         $this->email = $email;
-        $this->birth = $birth;
         $this->address = $address;
         $this->phoneNumber = $phoneNumber;
         $this->paymeantMethod = $paymeantMethod;
         $this->userVip = $userVip;
     }
 
-    public function getUserVip()
+    /**
+     * ## Set the name
+     *
+     * @param string $name
+     * @return string
+     */
+    public function setName($name)
     {
+        return $this->name = $name;
+    }
+
+    /**
+     * Get the name
+     *
+     * @return void
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return boolean userVip
+     */
+    public function getUserVip(){
         return $this->userVip;
     }
 }
@@ -47,31 +70,78 @@ class Products
     protected $descrProd;
     protected $techSpecs;
     protected $inStock;
-    protected $onSale;//booleano...se true restituisce lo sconto con funzione se è false non ritorna niente.
-
-    public function getInStock()
-    {
-        return $this->inStock;
+    protected $price;
+    public function __construct($nameProd, $descrProd, $techSpecs, $inStock, $price) {
+        $this->nameProd = $nameProd;
+        $this->descrProd = $descrProd;
+        $this->techSpecs = $techSpecs;
+        $this->inStock = $inStock;
+        $this->price=$price;
     }
 
-    public function isOnSale()
+    public function setPrice($price)
     {
-        if ($this->getInStock() < 5){
-            $this->onSale = true;
+        $this->price=$price;
+    }
+}
+
+
+
+$telefono = new Products('Apple Iphone', 'smartphone super', 'superpwr',30,null);
+var_dump($telefono);
+var_dump($telefono->setPrice(900));
+var_dump($telefono);
+
+
+
+class TypeOfProducts extends Products
+{   
+
+    protected $typeOfProd;
+    protected $onSalePrice;
+    /**
+     * Undocumented function
+     *
+     * @param string $nameProd
+     * @param string $descrProd
+     * @param string $techSpecs
+     * @param int $inStock
+     * @param int $price
+     * @param string $typeOfProd
+     */
+    public function __construct($nameProd, $descrProd, $techSpecs, $inStock, $price, $onSalePrice, $typeOfProd){
+        parent::__construct($nameProd, $descrProd, $techSpecs, $inStock, $price);
+        $this->typeOfProd = $typeOfProd;
+        $this->onSalePrice = $onSalePrice;
+    }
+
+    public function setTypeOf($typeOf)
+    {
+        $this->typeOfProd = $typeOf;
+    }
+
+    public function getTypeOf()
+    {
+        return $this->typeOfProd;
+    }
+
+    public function getDiscountByType()
+    {
+        if($this->typeOfProd == 'Smartphone' && $this->inStock < 10){
+            return $this->onSalePrice = $this->price - ($this->price * 5 /100);
+        } elseif($this->typeOfProd == 'Computer' && $this->inStock < 5){
+            return $this->onSalePrice = $this->price - ($this->price * 10 /100);
         } else {
-            $this->onSale = false;
+            return $this->onSalePrice = $this->price;
         }
     }
 }
 
-class TypeOfProducts extends Products
-{   
-    
-    protected $typeOfProd;
+$telefonoDiscount = new TypeOfProducts('Apple Iphone', 'smartphone super', 'superpwr',4 ,null,null,null);
+$telefonoDiscount->setTypeOf('Smartphone');
+$telefonoDiscount->setPrice(1200);
+var_dump($telefonoDiscount);
+var_dump($telefonoDiscount->getDiscountByType());
+var_dump($telefonoDiscount);
 
-    function __construct($nameProd, $descrProd, $techSpecs, $inStock, $onSale, $typeOfProd) {
-        parent::__construct($nameProd, $descrProd, $techSpecs, $inStock, $onSale);
-        $this->typeOfProd = $typeOfProd;
-    }
-}
 ?>
