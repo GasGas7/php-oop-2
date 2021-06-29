@@ -38,17 +38,23 @@ require_once __DIR__ . '/traits-exceptions/classes/db.php';
         <?php foreach ($model_list as $cupra) : ?>
 
             <div class="carta_auto">
-                <h4><?php echo $cupra->getbrand() ?></h4>
-                <h4><?php echo $cupra->getmodel() ?></h4>
-                <h4><?php echo $cupra->getSegment() ?></h4>
-                <h4><?php echo $cupra->getSafety() ?></h4>
-                <h4><?php echo $cupra->getHP() ?></h4>
-                <h4><?php $cupra->setFuel("Petrol") #Change Petrol with Electric?></h4>
-                <h4><?php echo $cupra->getPrice() ?></h4>
+                <h4><?= $cupra->getbrand() ?></h4>
+                <h4><?= $cupra->getmodel() ?></h4>
+                <h4><?= $cupra->getSegment() ?></h4>
+                <h4><?= $cupra->getSafety() ?></h4>
+                <h4><?= $cupra->getHP() ?></h4>
+                <h4><?php #$cupra->setFuel("Petrol") #Change Petrol with Electric?></h4>
+                <h4><?= $cupra->getPrice() ?></h4>
+                
             </div>
-
+            <?php try
+            { 
+                 echo $cupra->setFuel("Petrol");
+            } catch (Exception $e) {
+                 echo "Exception: " . $e->getMessage();
+            } ?>
+        <hr>
         <?php endforeach; ?>
-
 
 
     </div>

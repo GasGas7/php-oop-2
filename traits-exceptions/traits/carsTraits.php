@@ -44,7 +44,7 @@ trait SET_GET_price
     {   
         if($fuel != "Electric")
         {
-            throw new Exception("Queste auto sono Elettriche, non Benzina");
+            throw new Exception("Queste auto sono Elettriche, non a Benzina");
         }
         $this->fuel = $fuel;
         return $this->fuel;
