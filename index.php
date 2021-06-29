@@ -16,6 +16,7 @@ $user->insertCreditCard($c); -->
     /* require_once __DIR__ . '/classes/Product.php';
     require_once __DIR__ . '/classes/User.php';
     require_once __DIR__ . '/classes/TypeOfProd.php'; */
+    require_once __DIR__ . '/traits-exceptions/traits/carsTraits.php';
     require_once __DIR__ . '/traits-exceptions/classes/cars.php';
     require_once __DIR__ . '/traits-exceptions/classes/cupra.php';
 
