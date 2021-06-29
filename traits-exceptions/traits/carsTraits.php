@@ -1,6 +1,6 @@
 <?php
 
-trait get_brand_model
+trait get_method
 {
     public function getBrand()
     {
@@ -9,6 +9,26 @@ trait get_brand_model
     public function getModel()
     {
         return $this->model;
+    }
+    public function getSegment()
+    {
+        return $this->segment;
+    }
+    public function getFuel()
+    {
+        return $this->fuel;
+    }
+    public function getHP()
+    {
+        return $this->horse_power;
+    }
+    public function getSafety()
+    {
+        return $this->safety;
+    }
+    public function getPrice()
+    {
+        return $this->price;
     }
 }
 
@@ -20,9 +40,13 @@ trait SET_GET_price
      * @param integer $price
      * @return integer
      */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-        return $this->price;
+    public function setFuel($fuel)
+    {   
+        if($fuel != "Electric")
+        {
+            throw new Exception("Queste auto sono Elettriche, non Benzina");
+        }
+        $this->fuel = $fuel;
+        return $this->fuel;
     }
 }

@@ -3,7 +3,7 @@
 class Cupra extends Cars
 {   
 
-    use get_brand_model, SET_GET_price;
+    use get_method, SET_GET_price;
     protected $brand;
     protected $model;
     protected $price;
@@ -19,21 +19,11 @@ class Cupra extends Cars
         $this->model = $model;
     }
 
-    public function getBrand()
-    {   
-        return $this->brand;
-    }
-    public function getModel()
-    {
-        return $this->model;
-    }
 }
 
 $carOne = new Cupra("Sport SUV",310 , "Electric", 5, "CUPRA", "Formentor", 32000);
 
-var_dump($carOne);
-
-
+#var_dump($carOne);
 
 ?>
 
