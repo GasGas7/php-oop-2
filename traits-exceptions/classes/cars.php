@@ -20,5 +20,15 @@ class Cars
         $this->fuel = $fuel;
         $this->safety_star = $safety_star;
     }
+
+    public function setBrand($brand)
+    {   
+        if(!is_string($brand))
+        {
+            throw new Exception("Can't find the brand...");
+        }
+        $this->brand = $brand;
+        return $this->brand;
+    }
 }
 

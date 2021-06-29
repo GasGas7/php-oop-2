@@ -20,7 +20,7 @@ class Cupra extends Cars
     }
 
     public function getBrand()
-    {
+    {   
         return $this->brand;
     }
     public function getModel()
